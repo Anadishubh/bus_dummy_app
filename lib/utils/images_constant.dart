@@ -1,0 +1,29 @@
+class Images{
+  static const String bench = 'assets/images/bench.png';
+  static const String blueTail = 'assets/images/b1.png';
+  static const String d1 = 'assets/images/d1.png';
+  static const String d2 = 'assets/images/d2.png';
+  static const String g1 = 'assets/images/g1.png';
+  static const String g2 = 'assets/images/g2.png';
+  static const String logo = 'assets/images/logo.png';
+  static const String map = 'assets/images/map.png';
+  static const String map2 = 'assets/images/map2.png';
+  static const String minibus = 'assets/images/minibus.png';
+  static const String p1 = 'assets/images/p1.png';
+  static const String p2 = 'assets/images/p2.png';
+  static const String p3 = 'assets/images/p3.png';
+  static const String vector = 'assets/images/Vector.png';
+  static const String grp1 = 'assets/images/Group 1.png';
+  static const String google = 'assets/images/google.png';
+  static const String facebook = 'assets/images/facebook.png';
+  // static const String help = 'assets/images/Help.png';
+  // static const String about = 'assets/images/about.png';
+  // static const String chat = 'assets/images/chat.png';
+  // static const String exit = 'assets/images/exit.png';
+  // static const String faq = 'assets/images/faq.png';
+  // static const String home = 'assets/images/Home.png';
+  // static const String hammer = 'assets/images/hammer.png';
+  // static const String location = 'assets/images/location.png';
+  // static const String send = 'assets/images/send.png';
+  // static const String whatsapp2 = 'assets/images/whatsapp2.png';
+}
