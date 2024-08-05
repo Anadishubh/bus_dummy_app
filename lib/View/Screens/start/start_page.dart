@@ -281,7 +281,7 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
               );
             },
           ),
-          if (_showSwipeButton) // Display the SwipeButton only when _showSwipeButton is true
+          if (_showSwipeButton)
             Positioned(
               bottom: 80,
               left: 40,

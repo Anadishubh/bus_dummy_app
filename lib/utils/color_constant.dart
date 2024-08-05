@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color primaryColor = Color(0xffe9454a);
   static const Color primaryDarkColor = Color(0xfff6232a);
-  static const Color buttonDark = Color(0xffec282d);
-  static const Color buttonDark2 = Color(0xffc50f15);
+  static const Color buttonDark = Color(0xffc63a3d);
+  static const Color buttonDark2 = Color(0xff7c0303);
   static const Color buttonColor = Color(0xFFe9454a);
-  // static const Color black = Colors.black;
+  static const Color pink = Color(0xffffddde);
   // static const Color homeButton = Color(0xFF0F1938);
   // static const Color boxGrad1 = Color(0xFF1F3B99);
   // static const Color boxGrad2 = Color(0xFF11235C);

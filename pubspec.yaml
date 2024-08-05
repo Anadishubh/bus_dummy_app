@@ -37,7 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   get: ^4.6.6
   flutter_swipe_button: ^2.1.3
+  calender_picker: ^2.0.2
 
+  intl: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

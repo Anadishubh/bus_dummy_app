@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 
 class FontConstant {
   FontConstant._();
+
 
   static const String fontFamily = 'Poppins';
 

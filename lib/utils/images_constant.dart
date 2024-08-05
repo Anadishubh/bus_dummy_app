@@ -16,11 +16,11 @@ class Images{
   static const String grp1 = 'assets/images/Group 1.png';
   static const String google = 'assets/images/google.png';
   static const String facebook = 'assets/images/facebook.png';
-  // static const String help = 'assets/images/Help.png';
-  // static const String about = 'assets/images/about.png';
-  // static const String chat = 'assets/images/chat.png';
-  // static const String exit = 'assets/images/exit.png';
-  // static const String faq = 'assets/images/faq.png';
+  static const String rectangle = 'assets/images/rectangle.png';
+  static const String bus1 = 'assets/images/bus1.png';
+  static const String single = 'assets/images/single.png';
+  static const String price1 = 'assets/images/price1.png';
+  static const String green = 'assets/images/green.png';
   // static const String home = 'assets/images/Home.png';
   // static const String hammer = 'assets/images/hammer.png';
   // static const String location = 'assets/images/location.png';

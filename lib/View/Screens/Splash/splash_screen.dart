@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
     _mapController.forward();
 
     Timer(const Duration(seconds: 2), () {
-      Get.toNamed('/start');
+      Get.offAndToNamed('/start');
     });
   }
 
