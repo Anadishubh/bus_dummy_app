@@ -63,7 +63,7 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
 
     _p3Controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        // Optionally, restart animations or perform other actions here
+        _p3Controller.forward();
       }
     });
 
@@ -73,7 +73,7 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
       }
     });
 
-    _busController.forward(); // Start the bus animation first
+    _busController.forward();
 
     Future.delayed(const Duration(seconds: 4), () {
       setState(() {
@@ -103,7 +103,7 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
       CurvedAnimation(parent: _p3Controller, curve: Curves.easeInOut),
     );
     _busAnimation =
-        Tween<double>(begin: screenWidth * 2, end: screenWidth * 0.6).animate(
+        Tween<double>(begin: screenWidth * 2, end: screenWidth * 0.65).animate(
       CurvedAnimation(parent: _busController, curve: Curves.easeInOut),
     );
 
@@ -139,11 +139,11 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
               ),
             ),
           ),
-          Positioned(
-            top: 300,
-            left: 30,
-            right: 0,
-            child: Text(
+          Positioned.fill(
+            top: 290,
+            // left: screenHeight*0.03,
+            // right: screenHeight*0.03,
+            child: Text(textAlign: TextAlign.center,
               'Start Your Journey With',
               style: FontConstant.styleSemiBold(
                 fontSize: 25,
@@ -151,11 +151,11 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
               ),
             ),
           ),
-          Positioned(
+          Positioned.fill(
             top: 340,
-            left: 90,
-            right: 0,
-            child: Text(
+            left: screenHeight*0.04,
+            right: screenHeight*0.04,
+            child: Text(textAlign: TextAlign.center,
               'Book My Seva',
               style: FontConstant.styleSemiBold(
                 fontSize: 25,
@@ -324,9 +324,9 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
               ),
             ),
           Positioned(
-            bottom: -40,
+            bottom: screenHeight*-0.048,
             left: 0,
-            right: 100,
+            right: screenHeight*0.1,
             child: Container(
               height: screenHeight * 0.13,
               decoration: const BoxDecoration(
@@ -338,8 +338,8 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
             ),
           ),
           Positioned(
-            bottom: -40,
-            left: 240,
+            bottom: screenHeight*-0.047,
+            left: screenHeight*0.33,
             right: 0,
             child: Container(
               height: screenHeight * 0.12,
@@ -353,7 +353,7 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
           ),
           Positioned(
             bottom: 0,
-            left: 270,
+            left: screenHeight*0.41,
             right: 0,
             child: Container(
               height: screenHeight * 0.03,

@@ -175,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Image.asset(
                     Images.vector,
                     fit: BoxFit.fill,
-                    height: screenHeight * 0.41,
+                    height: screenHeight * 0.45,
                     width: double.infinity,
                   ),
                 ),
@@ -212,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
                 Positioned(
-                  bottom: screenHeight * 0.1,
+                  bottom: screenHeight * 0.12,
                   left: screenWidth * 0.1,
                   right: screenWidth * 0.1,
                   child: CustomButton(
@@ -238,9 +238,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Positioned(
-                  bottom: screenHeight * 0.035,
-                  left: screenWidth * 0.14,
-                  right: screenWidth * 0.14,
+                  bottom: screenHeight * 0.07,
+                  left: screenWidth * 0.13,
+                  right: screenWidth * 0.13,
                   child: Text(
                     textAlign: TextAlign.center,
                     'By pressing this you agree to our privacy policy and Terms and Conditions',

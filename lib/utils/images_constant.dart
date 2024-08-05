@@ -21,9 +21,9 @@ class Images{
   static const String single = 'assets/images/single.png';
   static const String price1 = 'assets/images/price1.png';
   static const String green = 'assets/images/green.png';
-  // static const String home = 'assets/images/Home.png';
-  // static const String hammer = 'assets/images/hammer.png';
-  // static const String location = 'assets/images/location.png';
-  // static const String send = 'assets/images/send.png';
-  // static const String whatsapp2 = 'assets/images/whatsapp2.png';
+  static const String monsoon = 'assets/images/monsoon.png';
+  static const String manali = 'assets/images/manali.png';
+  static const String katmandu = 'assets/images/katmandu.png';
+  static const String nepal = 'assets/images/nepal.png';
+  static const String grp2 = 'assets/images/grp2.png';
 }

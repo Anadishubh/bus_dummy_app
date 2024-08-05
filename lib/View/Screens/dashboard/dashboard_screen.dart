@@ -1,9 +1,11 @@
+import 'package:bms/View/Screens/dashboard/blog_listview.dart';
 import 'package:bms/utils/color_constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bms/utils/font_constant.dart';
 import 'package:bms/utils/images_constant.dart';
-import 'package:intl/intl.dart';
+import 'agencies_listview.dart';
+import 'calender.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -16,14 +18,35 @@ class _DashboardScreenState extends State<DashboardScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-  final List<String> imagePaths = [
-    Images.price1,
-    Images.price1,
+  final List<String> imagePaths = [Images.price1, Images.price1, Images.price1];
+  final List<String> imagePaths2 = [Images.green, Images.green, Images.green];
+  final List<String> imagePaths3 = [
+    Images.monsoon,
+    Images.monsoon,
+    Images.monsoon
   ];
-  final List<String> imagePaths2 = [
-    Images.green,
-    Images.green,
+  final List<String> imagePaths4 = [
+    Images.manali,
+    Images.katmandu,
+    Images.manali
   ];
+
+  final TextEditingController _leaving = TextEditingController();
+  final TextEditingController _going = TextEditingController();
+
+  void _swapTextControllers() {
+    final tempText = _leaving.text;
+    _leaving.text = _going.text;
+    _going.text = tempText;
+  }
+
+  @override
+  void dispose() {
+    _leaving.dispose();
+    _going.dispose();
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -41,19 +64,15 @@ class _DashboardScreenState extends State<DashboardScreen>
     final screenWidth = MediaQuery.of(context).size.width;
     _animation = Tween<double>(
       begin: screenWidth,
-      end: 240,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
+      end: screenWidth * 0.78,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
 
     _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -63,56 +82,77 @@ class _DashboardScreenState extends State<DashboardScreen>
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          foregroundColor: AppColors.primaryColor,
+          scrolledUnderElevation: 0,
+          centerTitle: true,
+          backgroundColor: AppColors.primaryColor,
+          leading: const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
+          title: Text(
+            'Dashboard',
+            style:
+                FontConstant.styleSemiBold(fontSize: 18, color: Colors.white),
+          ),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Icon(
+                Icons.notifications,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
               Stack(
                 children: [
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: screenWidth * 0.55,
+                    child: const Image(
+                      fit: BoxFit.fill,
+                      image: AssetImage(Images.vector),
+                    ),
+                  ),
                   Image(
                     image: const AssetImage(Images.rectangle),
                     fit: BoxFit.fill,
-                    height: screenWidth * 0.7,
+                    height: screenWidth * 0.4,
                     width: double.infinity,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 20, left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.menu,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          'Dashboard',
-                          style: FontConstant.styleMedium(
-                              fontSize: 18, color: Colors.white),
-                        ),
-                        const Icon(
-                          Icons.notifications,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: screenHeight * 0.1, left: 20, right: 20),
-                    child: Stack(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
+                  Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: screenHeight * 0.01,
+                                left: screenWidth * 0.03),
+                            child: Text(
                               'Search for Bus Tickets',
-                              style: FontConstant.styleMedium(
+                              style: FontConstant.styleSemiBold(
                                   fontSize: 18, color: Colors.white),
                             ),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 250,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: screenHeight * 0.01,
+                                left: screenWidth * 0.03,
+                                right: screenWidth * 0.03),
+                            child: Container(
+                              height: screenHeight * 0.31,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -129,27 +169,31 @@ class _DashboardScreenState extends State<DashboardScreen>
                               child: Stack(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 16.0, top: 16),
+                                    padding: EdgeInsets.only(
+                                        left: screenWidth * 0.03,
+                                        top: screenWidth * 0.03),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         buildLocationRow(
                                             CupertinoIcons.location,
-                                            'Leaving from'),
+                                            'Leaving from',
+                                            _leaving),
                                         const SizedBox(height: 10),
                                         buildDividerWithIcon(),
                                         const SizedBox(height: 10),
                                         buildLocationRow(
-                                            Icons.location_on_outlined,
-                                            'Going to'),
+                                          Icons.location_on_outlined,
+                                          'Going to',
+                                          _going,
+                                        ),
                                         const SizedBox(height: 14),
-                                        const Text(
+                                        Text(
                                           'Departure',
-                                          style: TextStyle(
+                                          style: FontConstant.styleSemiBold(
                                               fontSize: 16,
-                                              fontWeight: FontWeight.bold),
+                                              color: Colors.black),
                                         ),
                                         DynamicCalendar(
                                           onDateSelected: (DateTime) {},
@@ -158,20 +202,24 @@ class _DashboardScreenState extends State<DashboardScreen>
                                     ),
                                   ),
                                   Positioned(
-                                    top: 50,
-                                    right: 16,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.black.withOpacity(0.8),
-                                      ),
-                                      child: const SizedBox(
-                                        height: 45,
-                                        width: 45,
-                                        child: Center(
-                                          child: Icon(
-                                            CupertinoIcons.arrow_up_arrow_down,
-                                            color: Colors.white,
+                                    top: screenHeight * 0.056,
+                                    right: screenWidth * 0.03,
+                                    child: GestureDetector(
+                                      onTap: _swapTextControllers,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black.withOpacity(0.8),
+                                        ),
+                                        child: const SizedBox(
+                                          height: 50,
+                                          width: 50,
+                                          child: Center(
+                                            child: Icon(
+                                              CupertinoIcons
+                                                  .arrow_up_arrow_down,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -180,73 +228,89 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      AppColors.buttonDark2,
-                                      AppColors.buttonColor
-                                    ],
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: screenHeight * 0.03,
+                                left: screenWidth * 0.03,
+                                right: screenWidth * 0.03),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    AppColors.buttonDark2,
+                                    AppColors.buttonColor
+                                  ],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
                                 ),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () {},
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 100, vertical: 6),
-                                      child: const Row(
-                                        children: [
-                                          Icon(
-                                            Icons.search,
-                                            color: Colors.white,
-                                          ),
-                                          Text(
-                                            'Search Bus',
-                                            style: TextStyle(
-                                              color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  onTap: () {},
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: SizedBox(
+                                    height: 35,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.search,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          'Search Bus',
+                                          style: FontConstant.styleBold(
                                               fontSize: 16,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                              color: Colors.white),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Image(
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: const Image(
                               image: AssetImage(Images.single),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: Text(
                               'Book My Sewa Guarantee',
-                              style: FontConstant.styleMedium(
+                              style: FontConstant.styleSemiBold(
                                   fontSize: 16, color: Colors.black),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              height: 65,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: SizedBox(
+                              height: 75,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: imagePaths.length,
                                 itemBuilder: (context, index) {
                                   return Container(
-                                    margin: const EdgeInsets.only(right: 10),
+                                    margin: EdgeInsets.only(
+                                        right: screenWidth * 0.03),
                                     child: Image.asset(
                                       imagePaths[index],
                                       fit: BoxFit.fill,
@@ -255,10 +319,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 },
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Container(
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: AppColors.pink,
@@ -271,7 +339,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
+                                    padding: EdgeInsets.only(
+                                        left: screenWidth * 0.02),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -280,7 +349,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                       children: [
                                         Text(
                                           'Follow Us on Instagram',
-                                          style: FontConstant.styleBold(
+                                          style: FontConstant.styleSemiBold(
                                               fontSize: 12,
                                               color: Colors.black),
                                         ),
@@ -296,25 +365,24 @@ class _DashboardScreenState extends State<DashboardScreen>
                                   InkWell(
                                     onTap: () {},
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
+                                      padding: EdgeInsets.only(
+                                          right: screenWidth * 0.01),
                                       child: Container(
                                         height: 22,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 1),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: screenHeight * 0.015,
+                                            vertical: screenWidth * 0.01),
                                         decoration: BoxDecoration(
                                           color: AppColors.primaryColor,
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
-                                        child: const Center(
+                                        child: Center(
                                           child: Text(
                                             'Go to Instagram',
-                                            style: TextStyle(
-                                              fontSize: 11,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                            style: FontConstant.styleSemiBold(
+                                                fontSize: 10,
+                                                color: Colors.white),
                                           ),
                                         ),
                                       ),
@@ -323,62 +391,207 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 ],
                               ),
                             ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   'Special Offers',
-                                  style: FontConstant.styleMedium(
+                                  style: FontConstant.styleSemiBold(
                                       fontSize: 16, color: Colors.black),
                                 ),
                                 TextButton(
                                   onPressed: () {},
                                   child: Text(
                                     'View All',
-                                    style: FontConstant.styleBold(
+                                    style: FontConstant.styleSemiBold(
                                         fontSize: 12,
                                         color: AppColors.primaryColor),
                                   ),
                                 )
                               ],
                             ),
-                            SizedBox(
-                              height: 120,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: SizedBox(
+                              height: 140,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: imagePaths2.length,
                                 itemBuilder: (context, index) {
-                                  return Image.asset(
-                                    imagePaths2[index],
-                                    fit: BoxFit.fill,
+                                  return Container(
+                                    margin: const EdgeInsets.only(right: 8),
+                                    child: Image.asset(
+                                      imagePaths2[index],
+                                      fit: BoxFit.fill,
+                                    ),
                                   );
                                 },
                               ),
                             ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 1000,
-                        ),
-                        AnimatedBuilder(
-                          animation: _animation,
-                          builder: (context, child) {
-                            return Positioned(
-                              top: 0,
-                              left: _animation.value,
-                              child: const Image(
-                                image: AssetImage(Images.bus1),
-                                height: 60,
-                                fit: BoxFit.contain,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'From The Blog',
+                                  style: FontConstant.styleSemiBold(
+                                      fontSize: 17, color: Colors.black),
+                                ),
+                                Text(
+                                  'View All',
+                                  style: FontConstant.styleSemiBold(
+                                      fontSize: 12,
+                                      color: AppColors.primaryColor),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 145,
+                            width: double.infinity,
+                            color: AppColors.primaryColor,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: imagePaths2.length,
+                              itemBuilder: (context, index) {
+                                return const BlogListview(
+                                  imagePath: 'assets/images/grp2.png',
+                                  title: 'Monsoon Trip',
+                                  description:
+                                      'Lorem Ipsumis simply\nis a dummy text of printing.',
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Routes',
+                                  style: FontConstant.styleSemiBold(
+                                      fontSize: 17, color: Colors.black),
+                                ),
+                                Text(
+                                  'View All',
+                                  style: FontConstant.styleSemiBold(
+                                      fontSize: 12,
+                                      color: AppColors.primaryColor),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: SizedBox(
+                              height: 165,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: imagePaths2.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    margin: const EdgeInsets.only(right: 8),
+                                    child: Image.asset(
+                                      imagePaths4[index],
+                                      fit: BoxFit.fill,
+                                    ),
+                                  );
+                                },
                               ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Top Agencies',
+                                  style: FontConstant.styleSemiBold(
+                                      fontSize: 17, color: Colors.black),
+                                ),
+                                Text(
+                                  'View All',
+                                  style: FontConstant.styleSemiBold(
+                                      fontSize: 12,
+                                      color: AppColors.primaryColor),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.03),
+                            child: SizedBox(
+                              height: 140,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 3,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return const AgenciesListview(
+                                    imagePath: 'assets/images/bus2.png',
+                                    title: 'Nepal Tour and Travels PVT LTD',
+                                    description:
+                                        'We have overall 1738 services including janrath,\nsemi deluxe, fully deluxe and more...',
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: screenHeight * 1,
+                      ),
+                      AnimatedBuilder(
+                        animation: _animation,
+                        builder: (context, child) {
+                          return Positioned(
+                            top: screenHeight * 0.02,
+                            left: _animation.value,
+                            child: const Image(
+                              image: AssetImage(Images.bus1),
+                              height: 60,
+                              fit: BoxFit.contain,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -389,7 +602,8 @@ class _DashboardScreenState extends State<DashboardScreen>
     );
   }
 
-  Widget buildLocationRow(IconData icon, String hint) {
+  Widget buildLocationRow(
+      IconData icon, String hint, TextEditingController controller) {
     return Row(
       children: [
         Icon(
@@ -400,11 +614,13 @@ class _DashboardScreenState extends State<DashboardScreen>
         const SizedBox(width: 10),
         Expanded(
           child: TextField(
+            controller: controller,
             decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: hint,
-                hintStyle: FontConstant.styleMedium(
-                    fontSize: 16, color: Colors.black)),
+              border: InputBorder.none,
+              hintText: hint,
+              hintStyle:
+                  FontConstant.styleMedium(fontSize: 16, color: Colors.black),
+            ),
           ),
         ),
       ],
@@ -415,190 +631,11 @@ class _DashboardScreenState extends State<DashboardScreen>
     return Row(
       children: [
         Container(
-          width: 230,
+          width: 270,
           color: Colors.black.withOpacity(0.2),
           height: 2,
         ),
       ],
-    );
-  }
-}
-
-class DynamicCalendar extends StatefulWidget {
-  final Function(DateTime) onDateSelected;
-
-  const DynamicCalendar({super.key, required this.onDateSelected});
-
-  @override
-  _DynamicCalendarState createState() => _DynamicCalendarState();
-}
-
-class _DynamicCalendarState extends State<DynamicCalendar> {
-  late DateTime _selectedDate;
-  late List<DateTime> _visibleDates;
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    _selectedDate = DateTime.now();
-    _updateVisibleDates(_selectedDate);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _updateVisibleDates(DateTime baseDate) {
-    _visibleDates = List.generate(30, (index) {
-      return DateTime(baseDate.year, baseDate.month, 1)
-          .add(Duration(days: index));
-    });
-  }
-
-  void _selectDate(DateTime date) {
-    setState(() {
-      _selectedDate = date;
-    });
-    widget.onDateSelected(date);
-  }
-
-  Future<void> _selectMonth(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _selectedDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-      initialDatePickerMode: DatePickerMode.year,
-    );
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-        _updateVisibleDates(picked);
-      });
-      widget.onDateSelected(picked);
-      _scrollToSelectedDate();
-    }
-  }
-
-  void _scrollToSelectedDate() {
-    int selectedIndex = _visibleDates.indexOf(_selectedDate);
-    if (selectedIndex != -1) {
-      _scrollController.animateTo(
-        selectedIndex * 47.0,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      color: Colors.white,
-      child: Row(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              scrollDirection: Axis.horizontal,
-              itemCount: _visibleDates.length,
-              itemBuilder: (context, index) {
-                return _buildDateColumn(_visibleDates[index]);
-              },
-            ),
-          ),
-          Container(
-            color: Colors.grey,
-            width: 2,
-            height: 50,
-          ),
-          _buildMonthYear(context),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDateColumn(DateTime date) {
-    bool isSelected = date.year == _selectedDate.year &&
-        date.month == _selectedDate.month &&
-        date.day == _selectedDate.day;
-
-    return GestureDetector(
-      onTap: () => _selectDate(date),
-      child: SizedBox(
-        width: 45,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isSelected ? AppColors.primaryColor : Colors.transparent,
-              ),
-              child: Center(
-                child: Text(
-                  '${date.day}',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                    color: isSelected ? Colors.white : Colors.black,
-                  ),
-                ),
-              ),
-            ),
-            Text(
-              DateFormat('EEE').format(date).toUpperCase(),
-              style: const TextStyle(
-                fontSize: 10,
-                color: Colors.grey,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMonthYear(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _selectMonth(context),
-      child: Container(
-        padding: const EdgeInsets.only(left: 10, top: 5),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  DateFormat('MMM').format(_selectedDate).toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  '${_selectedDate.year}',
-                  style: const TextStyle(
-                    fontSize: 10,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-            const Icon(Icons.arrow_drop_down, color: Colors.red, size: 30),
-          ],
-        ),
-      ),
     );
   }
 }
