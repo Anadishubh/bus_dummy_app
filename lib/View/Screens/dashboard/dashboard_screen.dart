@@ -148,7 +148,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: screenHeight * 0.01,
+                                top: screenHeight * 0.01,
                                 left: screenWidth * 0.03,
                                 right: screenWidth * 0.03),
                             child: Container(
@@ -476,7 +476,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                   imagePath: 'assets/images/grp2.png',
                                   title: 'Monsoon Trip',
                                   description:
-                                      'Lorem Ipsumis simply\nis a dummy text of printing.',
+                                      'Lorem ipsum simply\nis a dummy text of printing.',
                                 );
                               },
                             ),
