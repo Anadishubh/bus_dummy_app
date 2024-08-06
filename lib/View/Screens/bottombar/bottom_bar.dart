@@ -1,4 +1,5 @@
 import 'package:bms/View/Screens/dashboard/dashboard_screen.dart';
+import 'package:bms/View/Screens/profile/Profile_screen.dart';
 import 'package:bms/utils/color_constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class BottomBarState extends State<BottomBar> {
     const Page2(),
     const Page3(),
     const Page4(),
-    const Page5(),
+    const ProfileScreen(),
   ];
 
   @override
@@ -164,27 +165,6 @@ class Page4 extends StatelessWidget {
       child: Center(
         child: Text(
           "Page Number 4",
-          style: TextStyle(
-            color: Colors.green[900],
-            fontSize: 45,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Page5 extends StatelessWidget {
-  const Page5({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xffC4DFCB),
-      child: Center(
-        child: Text(
-          "Page Number 5",
           style: TextStyle(
             color: Colors.green[900],
             fontSize: 45,

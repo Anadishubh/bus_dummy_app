@@ -26,4 +26,17 @@ class Images{
   static const String katmandu = 'assets/images/katmandu.png';
   static const String nepal = 'assets/images/nepal.png';
   static const String grp2 = 'assets/images/grp2.png';
+  static const String cyber = 'assets/images/cyber.png';
+  static const String card = 'assets/images/card.png';
+  static const String news = 'assets/images/news.png';
+  static const String offer = 'assets/images/offer.png';
+  static const String rate = 'assets/images/rate.png';
+  static const String setting = 'assets/images/setting.png';
+  static const String share = 'assets/images/share.png';
+  static const String wallet = 'assets/images/wallet.png';
+  static const String info = 'assets/images/info.png';
+  static const String question = 'assets/images/question.png';
+  static const String line = 'assets/images/line.png';
+  static const String user = 'assets/images/user.png';
+  static const String user2 = 'assets/images/user2.png';
 }
