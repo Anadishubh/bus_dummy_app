@@ -8,7 +8,7 @@ class AppColors {
   static const Color buttonColor = Color(0xFFe9454a);
   static const Color pink = Color(0xffffe9e9);
   static const Color darkPink = Color(0xFFffc8c8);
-  // static const Color boxGrad1 = Color(0xFF1F3B99);
+  static const Color background = Color(0xFFf5f5f5);
   // static const Color boxGrad2 = Color(0xFF11235C);
   // static const Color checkColor = Color(0xffFFCE1A);
   // static const Color greyLight = Color(0xffE2E2E2);

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bms/utils/font_constant.dart';
 import 'package:bms/utils/images_constant.dart';
+import 'package:get/get.dart';
 import 'agencies_listview.dart';
 import 'calender.dart';
 
@@ -33,6 +34,8 @@ class _DashboardScreenState extends State<DashboardScreen>
 
   final TextEditingController _leaving = TextEditingController();
   final TextEditingController _going = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
 
   void _swapTextControllers() {
     final tempText = _leaving.text;
@@ -108,494 +111,501 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: screenWidth * 0.55,
-                    child: const Image(
-                      fit: BoxFit.fill,
-                      image: AssetImage(Images.vector),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: screenWidth * 0.55,
+                      child: const Image(
+                        fit: BoxFit.fill,
+                        image: AssetImage(Images.vector),
+                      ),
                     ),
-                  ),
-                  Image(
-                    image: const AssetImage(Images.rectangle),
-                    fit: BoxFit.fill,
-                    height: screenWidth * 0.4,
-                    width: double.infinity,
-                  ),
-                  Stack(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: screenHeight * 0.01,
-                                left: screenWidth * 0.03),
-                            child: Text(
-                              'Search for Bus Tickets',
-                              style: FontConstant.styleSemiBold(
-                                  fontSize: 18, color: Colors.white),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: screenHeight * 0.01,
-                                left: screenWidth * 0.03,
-                                right: screenWidth * 0.03),
-                            child: Container(
-                              height: screenHeight * 0.31,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.6),
-                                    spreadRadius: 1,
-                                    blurRadius: 1,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
+                    Image(
+                      image: const AssetImage(Images.rectangle),
+                      fit: BoxFit.fill,
+                      height: screenWidth * 0.4,
+                      width: double.infinity,
+                    ),
+                    Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: screenHeight * 0.01,
+                                  left: screenWidth * 0.03),
+                              child: Text(
+                                'Search for Bus Tickets',
+                                style: FontConstant.styleSemiBold(
+                                    fontSize: 18, color: Colors.white),
                               ),
-                              child: Stack(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: screenWidth * 0.03,
-                                        top: screenWidth * 0.03),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        buildLocationRow(
-                                            CupertinoIcons.location,
-                                            'Leaving from',
-                                            _leaving),
-                                        const SizedBox(height: 10),
-                                        buildDividerWithIcon(),
-                                        const SizedBox(height: 10),
-                                        buildLocationRow(
-                                          Icons.location_on_outlined,
-                                          'Going to',
-                                          _going,
-                                        ),
-                                        const SizedBox(height: 14),
-                                        Text(
-                                          'Departure',
-                                          style: FontConstant.styleSemiBold(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                        ),
-                                        DynamicCalendar(
-                                          onDateSelected: (DateTime) {},
-                                        ),
-                                      ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: screenHeight * 0.01,
+                                  left: screenWidth * 0.03,
+                                  right: screenWidth * 0.03),
+                              child: Container(
+                                height: screenHeight * 0.31,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.6),
+                                      spreadRadius: 1,
+                                      blurRadius: 1,
+                                      offset: const Offset(0, 4),
                                     ),
-                                  ),
-                                  Positioned(
-                                    top: screenHeight * 0.056,
-                                    right: screenWidth * 0.03,
-                                    child: GestureDetector(
-                                      onTap: _swapTextControllers,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.black.withOpacity(0.8),
-                                        ),
-                                        child: const SizedBox(
-                                          height: 50,
-                                          width: 50,
-                                          child: Center(
-                                            child: Icon(
-                                              CupertinoIcons
-                                                  .arrow_up_arrow_down,
-                                              color: Colors.white,
+                                  ],
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: screenWidth * 0.03,
+                                          top: screenWidth * 0.03),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          buildLocationRow(
+                                              CupertinoIcons.location,
+                                              'Leaving from',
+                                              _leaving),
+                                          const SizedBox(height: 10),
+                                          buildDividerWithIcon(),
+                                          const SizedBox(height: 10),
+                                          buildLocationRow(
+                                            Icons.location_on_outlined,
+                                            'Going to',
+                                            _going,
+                                          ),
+                                          const SizedBox(height: 14),
+                                          Text(
+                                            'Departure',
+                                            style: FontConstant.styleSemiBold(
+                                                fontSize: 16,
+                                                color: Colors.black),
+                                          ),
+                                          DynamicCalendar(
+                                            onDateSelected: (DateTime) {},
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: screenHeight * 0.056,
+                                      right: screenWidth * 0.03,
+                                      child: GestureDetector(
+                                        onTap: _swapTextControllers,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.black.withOpacity(0.8),
+                                          ),
+                                          child: const SizedBox(
+                                            height: 50,
+                                            width: 50,
+                                            child: Center(
+                                              child: Icon(
+                                                CupertinoIcons
+                                                    .arrow_up_arrow_down,
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: screenHeight * 0.03,
-                                left: screenWidth * 0.03,
-                                right: screenWidth * 0.03),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    AppColors.buttonDark2,
-                                    AppColors.buttonColor
                                   ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: () {},
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: screenHeight * 0.03,
+                                  left: screenWidth * 0.03,
+                                  right: screenWidth * 0.03),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      AppColors.buttonDark2,
+                                      AppColors.buttonColor
+                                    ],
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                  ),
                                   borderRadius: BorderRadius.circular(8),
-                                  child: SizedBox(
-                                    height: 35,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.search,
-                                          color: Colors.white,
-                                        ),
-                                        Text(
-                                          'Search Bus',
-                                          style: FontConstant.styleBold(
-                                              fontSize: 16,
-                                              color: Colors.white),
-                                        ),
-                                      ],
+                                ),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        Get.toNamed('/search');
+                                      }
+                                    },
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: SizedBox(
+                                      height: 35,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(
+                                            Icons.search,
+                                            color: Colors.white,
+                                          ),
+                                          Text(
+                                            'Search Bus',
+                                            style: FontConstant.styleBold(
+                                                fontSize: 16,
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: const Image(
-                              image: AssetImage(Images.single),
+                            const SizedBox(
+                              height: 20,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: Text(
-                              'Book My Sewa Guarantee',
-                              style: FontConstant.styleSemiBold(
-                                  fontSize: 16, color: Colors.black),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: SizedBox(
-                              height: 75,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: imagePaths.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: EdgeInsets.only(
-                                        right: screenWidth * 0.03),
-                                    child: Image.asset(
-                                      imagePaths[index],
-                                      fit: BoxFit.fill,
-                                    ),
-                                  );
-                                },
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: const Image(
+                                image: AssetImage(Images.single),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: AppColors.pink,
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: Text(
+                                'Book My Sewa Guarantee',
+                                style: FontConstant.styleSemiBold(
+                                    fontSize: 16, color: Colors.black),
                               ),
-                              height: 50,
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: screenWidth * 0.02),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Follow Us on Instagram',
-                                          style: FontConstant.styleSemiBold(
-                                              fontSize: 12,
-                                              color: Colors.black),
-                                        ),
-                                        Text(
-                                          'Join Book My Sewa Community',
-                                          style: FontConstant.styleRegular(
-                                              fontSize: 10,
-                                              color: Colors.black),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {},
-                                    child: Padding(
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: SizedBox(
+                                height: 75,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: imagePaths.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      margin: EdgeInsets.only(
+                                          right: screenWidth * 0.03),
+                                      child: Image.asset(
+                                        imagePaths[index],
+                                        fit: BoxFit.fill,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: AppColors.pink,
+                                ),
+                                height: 50,
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
                                       padding: EdgeInsets.only(
-                                          right: screenWidth * 0.01),
-                                      child: Container(
-                                        height: 22,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: screenHeight * 0.015,
-                                            vertical: screenWidth * 0.01),
-                                        decoration: BoxDecoration(
-                                          color: AppColors.primaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            'Go to Instagram',
+                                          left: screenWidth * 0.02),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Follow Us on Instagram',
                                             style: FontConstant.styleSemiBold(
+                                                fontSize: 12,
+                                                color: Colors.black),
+                                          ),
+                                          Text(
+                                            'Join Book My Sewa Community',
+                                            style: FontConstant.styleRegular(
                                                 fontSize: 10,
-                                                color: Colors.white),
+                                                color: Colors.black),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            right: screenWidth * 0.01),
+                                        child: Container(
+                                          height: 22,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: screenHeight * 0.015,
+                                              vertical: screenWidth * 0.01),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryColor,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              'Go to Instagram',
+                                              style: FontConstant.styleSemiBold(
+                                                  fontSize: 10,
+                                                  color: Colors.white),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Special Offers',
+                                    style: FontConstant.styleSemiBold(
+                                        fontSize: 16, color: Colors.black),
                                   ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'View All',
+                                      style: FontConstant.styleSemiBold(
+                                          fontSize: 12,
+                                          color: AppColors.primaryColor),
+                                    ),
+                                  )
                                 ],
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Special Offers',
-                                  style: FontConstant.styleSemiBold(
-                                      fontSize: 16, color: Colors.black),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: SizedBox(
+                                height: 140,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: imagePaths2.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      margin: const EdgeInsets.only(right: 8),
+                                      child: Image.asset(
+                                        imagePaths2[index],
+                                        fit: BoxFit.fill,
+                                      ),
+                                    );
+                                  },
                                 ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'From The Blog',
+                                    style: FontConstant.styleSemiBold(
+                                        fontSize: 17, color: Colors.black),
+                                  ),
+                                  Text(
                                     'View All',
                                     style: FontConstant.styleSemiBold(
                                         fontSize: 12,
                                         color: AppColors.primaryColor),
                                   ),
-                                )
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: SizedBox(
-                              height: 140,
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 145,
+                              width: double.infinity,
+                              color: AppColors.primaryColor,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: imagePaths2.length,
                                 itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: const EdgeInsets.only(right: 8),
-                                    child: Image.asset(
-                                      imagePaths2[index],
-                                      fit: BoxFit.fill,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'From The Blog',
-                                  style: FontConstant.styleSemiBold(
-                                      fontSize: 17, color: Colors.black),
-                                ),
-                                Text(
-                                  'View All',
-                                  style: FontConstant.styleSemiBold(
-                                      fontSize: 12,
-                                      color: AppColors.primaryColor),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 145,
-                            width: double.infinity,
-                            color: AppColors.primaryColor,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: imagePaths2.length,
-                              itemBuilder: (context, index) {
-                                return const BlogListview(
-                                  imagePath: 'assets/images/grp2.png',
-                                  title: 'Monsoon Trip',
-                                  description:
-                                      'Lorem ipsum simply\nis a dummy text of printing.',
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Routes',
-                                  style: FontConstant.styleSemiBold(
-                                      fontSize: 17, color: Colors.black),
-                                ),
-                                Text(
-                                  'View All',
-                                  style: FontConstant.styleSemiBold(
-                                      fontSize: 12,
-                                      color: AppColors.primaryColor),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: SizedBox(
-                              height: 165,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: imagePaths2.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: const EdgeInsets.only(right: 8),
-                                    child: Image.asset(
-                                      imagePaths4[index],
-                                      fit: BoxFit.fill,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Top Agencies',
-                                  style: FontConstant.styleSemiBold(
-                                      fontSize: 17, color: Colors.black),
-                                ),
-                                Text(
-                                  'View All',
-                                  style: FontConstant.styleSemiBold(
-                                      fontSize: 12,
-                                      color: AppColors.primaryColor),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.03),
-                            child: SizedBox(
-                              height: 140,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 3,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return const AgenciesListview(
-                                    imagePath: 'assets/images/bus2.png',
-                                    title: 'Nepal Tour and Travels PVT LTD',
+                                  return const BlogListview(
+                                    imagePath: 'assets/images/grp2.png',
+                                    title: 'Monsoon Trip',
                                     description:
-                                        'We have overall 1738 services including janrath,\nsemi deluxe, fully deluxe and more...',
+                                        'Lorem ipsum simply\nis a dummy text of printing.',
                                   );
                                 },
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: screenHeight * 1,
-                      ),
-                      AnimatedBuilder(
-                        animation: _animation,
-                        builder: (context, child) {
-                          return Positioned(
-                            top: screenHeight * 0.02,
-                            left: _animation.value,
-                            child: const Image(
-                              image: AssetImage(Images.bus1),
-                              height: 60,
-                              fit: BoxFit.contain,
+                            const SizedBox(
+                              height: 10,
                             ),
-                          );
-                        },
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ],
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Routes',
+                                    style: FontConstant.styleSemiBold(
+                                        fontSize: 17, color: Colors.black),
+                                  ),
+                                  Text(
+                                    'View All',
+                                    style: FontConstant.styleSemiBold(
+                                        fontSize: 12,
+                                        color: AppColors.primaryColor),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: SizedBox(
+                                height: 165,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: imagePaths2.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      margin: const EdgeInsets.only(right: 8),
+                                      child: Image.asset(
+                                        imagePaths4[index],
+                                        fit: BoxFit.fill,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Top Agencies',
+                                    style: FontConstant.styleSemiBold(
+                                        fontSize: 17, color: Colors.black),
+                                  ),
+                                  Text(
+                                    'View All',
+                                    style: FontConstant.styleSemiBold(
+                                        fontSize: 12,
+                                        color: AppColors.primaryColor),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.03),
+                              child: SizedBox(
+                                height: 140,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 3,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return const AgenciesListview(
+                                      imagePath: 'assets/images/bus2.png',
+                                      title: 'Nepal Tour and Travels PVT LTD',
+                                      description:
+                                          'We have overall 1738 services including janrath,\nsemi deluxe, fully deluxe and more...',
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: screenHeight * 1,
+                        ),
+                        AnimatedBuilder(
+                          animation: _animation,
+                          builder: (context, child) {
+                            return Positioned(
+                              top: screenHeight * 0.02,
+                              left: _animation.value,
+                              child: const Image(
+                                image: AssetImage(Images.bus1),
+                                height: 60,
+                                fit: BoxFit.contain,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -613,13 +623,27 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
         const SizedBox(width: 10),
         Expanded(
-          child: TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: hint,
-              hintStyle:
-                  FontConstant.styleMedium(fontSize: 16, color: Colors.black),
+          child: Padding(
+            padding: const EdgeInsets.only(right: 90),
+            child: TextFormField(
+              controller: controller,
+              style: FontConstant.styleRegular(fontSize: 16, color: Colors.black),
+              decoration: InputDecoration(
+                hintText: hint,
+                hintStyle: FontConstant.styleRegular(
+                    fontSize: 16, color: Colors.grey.withOpacity(0.8)),
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                errorStyle: const TextStyle(height: 0),
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '';
+                }
+                return null;
+              },
             ),
           ),
         ),

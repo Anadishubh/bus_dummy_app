@@ -1,5 +1,6 @@
 import 'package:bms/View/Screens/bottombar/bottom_bar.dart';
 import 'package:bms/View/Screens/login/login_page.dart';
+import 'package:bms/View/Screens/search/search_page.dart';
 import 'package:bms/View/Screens/start/start_page.dart';
 import 'package:get/get.dart';
 import '../View/Screens/Splash/splash_screen.dart';
@@ -15,7 +16,7 @@ class AppRoutes {
   static const String faq = '/faq';
   static const String form = '/form';
   static const String mainPage = '/mainPage';
-
+  static const String search = '/search';
   // static const String dashBoard2 = '/dashboard2';
 
   static final List<GetPage> routes = [
@@ -42,12 +43,12 @@ class AppRoutes {
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 400),
     ),
-    // GetPage(
-    //   name: repair,
-    //   page: () => const RepairMethodologyPage(),
-    //   transition: Transition.fadeIn,
-    //   transitionDuration: const Duration(milliseconds: 400),
-    // ),
+    GetPage(
+      name: search,
+      page: () => const SearchPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 400),
+    ),
     // GetPage(
     //   name: visit,
     //   page: () => const ArrangeVisitPage(),
