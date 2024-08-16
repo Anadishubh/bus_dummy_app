@@ -36,7 +36,6 @@ class _DashboardScreenState extends State<DashboardScreen>
   final TextEditingController _going = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   void _swapTextControllers() {
     final tempText = _leaving.text;
     _leaving.text = _going.text;
@@ -85,14 +84,27 @@ class _DashboardScreenState extends State<DashboardScreen>
 
     return SafeArea(
       child: Scaffold(
+        drawer: const CustomDrawer2(),
         appBar: AppBar(
           foregroundColor: AppColors.primaryColor,
           scrolledUnderElevation: 0,
           centerTitle: true,
           backgroundColor: AppColors.primaryColor,
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.white,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                ),
+              );
+            },
           ),
           title: Text(
             'Dashboard',
@@ -214,7 +226,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                                         child: Container(
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            color: Colors.black.withOpacity(0.8),
+                                            color:
+                                                Colors.black.withOpacity(0.8),
                                           ),
                                           child: const SizedBox(
                                             height: 50,
@@ -408,7 +421,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                               padding: EdgeInsets.symmetric(
                                   horizontal: screenWidth * 0.03),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Special Offers',
@@ -454,7 +468,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                               padding: EdgeInsets.symmetric(
                                   horizontal: screenWidth * 0.03),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'From The Blog',
@@ -479,7 +494,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                               color: AppColors.primaryColor,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: imagePaths2.length,
+                                itemCount: 3,
                                 itemBuilder: (context, index) {
                                   return const BlogListview(
                                     imagePath: 'assets/images/grp2.png',
@@ -497,7 +512,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                               padding: EdgeInsets.symmetric(
                                   horizontal: screenWidth * 0.03),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Routes',
@@ -543,7 +559,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                               padding: EdgeInsets.symmetric(
                                   horizontal: screenWidth * 0.03),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Top Agencies',
@@ -570,7 +587,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: 3,
-                                  itemBuilder: (BuildContext context, int index) {
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
                                     return const AgenciesListview(
                                       imagePath: 'assets/images/bus2.png',
                                       title: 'Nepal Tour and Travels PVT LTD',
@@ -627,7 +645,8 @@ class _DashboardScreenState extends State<DashboardScreen>
             padding: const EdgeInsets.only(right: 90),
             child: TextFormField(
               controller: controller,
-              style: FontConstant.styleRegular(fontSize: 16, color: Colors.black),
+              style:
+                  FontConstant.styleRegular(fontSize: 16, color: Colors.black),
               decoration: InputDecoration(
                 hintText: hint,
                 hintStyle: FontConstant.styleRegular(
@@ -660,6 +679,227 @@ class _DashboardScreenState extends State<DashboardScreen>
           height: 2,
         ),
       ],
+    );
+  }
+}
+
+class CustomDrawer2 extends StatelessWidget {
+  const CustomDrawer2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: Colors.white,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          Container(
+            height: 100,
+            decoration: const BoxDecoration(
+              color: AppColors.primaryDarkColor,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 17, top: 30),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.person_outline,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text('Ken Yuuma',
+                      style: FontConstant.styleMedium(
+                          fontSize: 17, color: Colors.white)),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Icon(
+                    Icons.edit_outlined,
+                    size: 19,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.dashboard,
+              size: 21,
+            ),
+            title: Text(
+              'Dashboard',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Navigate to Home Page
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.person_outline,
+              size: 21,
+            ),
+            title: Text(
+              'My Profile',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Navigate to Search Page
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.notifications_none,
+              size: 21,
+            ),
+            title: Text(
+              'Notification',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Navigate to Settings Page
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.person_add_alt_1_outlined,
+              size: 21,
+            ),
+            title: Text(
+              'My Traveller Details',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Handle logout action
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.calendar_today,
+              size: 21,
+            ),
+            title: Text(
+              'Booking Details',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Handle logout action
+            },
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 1,
+            width: double.infinity,
+            color: Colors.grey,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.share_outlined,
+              size: 21,
+            ),
+            title: Text(
+              'Refer and Earn',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Handle logout action
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.settings_outlined,
+              size: 21,
+            ),
+            title: Text(
+              'Account Settings',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Handle logout action
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.feedback_outlined,
+              size: 21,
+            ),
+            title: Text(
+              'Write a Feedback',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Handle logout action
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.privacy_tip_outlined,
+              size: 21,
+            ),
+            title: Text(
+              'Privacy Policy',
+              style:
+                  FontConstant.styleRegular(fontSize: 14, color: Colors.black),
+            ),
+            onTap: () {
+              Navigator.of(context).pop(); // Close the drawer
+              // Handle logout action
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(color: AppColors.primaryColor, width: 2),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.power_settings_new_outlined,
+                    color: AppColors.primaryColor,
+                  ),
+                  Text(
+                    'Logout',
+                    style: TextStyle(color: AppColors.primaryColor),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

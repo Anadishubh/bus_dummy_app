@@ -9,11 +9,10 @@ class AppColors {
   static const Color pink = Color(0xffffe9e9);
   static const Color darkPink = Color(0xFFffc8c8);
   static const Color background = Color(0xFFf5f5f5);
-  // static const Color boxGrad2 = Color(0xFF11235C);
-  // static const Color checkColor = Color(0xffFFCE1A);
-  // static const Color greyLight = Color(0xffE2E2E2);
-  // static const Color textColor = Color(0xff1A247C);
-  // static const Color bottomBar = Color(0xffFFFFFF);
+  static const Color redLight = Color(0xFFffe7e7);
+  static const Color greenLight = Color(0xffdefbd5);
+  static const Color greenLight2 = Color(0xff31CD6F);
+  static const Color greyLight = Color(0xffEFEFEF);
   // static const Color backgroundColor = Color(0xffFFFFFF);
   // static const Color textField = Color(0xff8EA9FF);
   // static const Color error = Color(0xffe30c0c);

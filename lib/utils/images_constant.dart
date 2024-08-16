@@ -39,4 +39,7 @@ class Images{
   static const String line = 'assets/images/line.png';
   static const String user = 'assets/images/user.png';
   static const String user2 = 'assets/images/user2.png';
+  static const String arrow = 'assets/images/arrow.png';
+  static const String light = 'assets/images/light.png';
+  static const String ac = 'assets/images/ac.png';
 }

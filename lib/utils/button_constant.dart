@@ -60,10 +60,10 @@ class CustomSmallButton extends StatelessWidget {
 
   const CustomSmallButton(
       {super.key,
-        required this.text,
-        required this.onPressed,
-        required this.color,
-        required this.textStyle});
+      required this.text,
+      required this.onPressed,
+      required this.color,
+      required this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class CustomSmallButton extends StatelessWidget {
           children: [
             Padding(
               padding:
-              const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2),
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2),
               child: Text(
                 text,
                 style: textStyle,
@@ -98,7 +98,7 @@ class CustomShadowButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Color color;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final Icon? icon;
 
   const CustomShadowButton({
@@ -106,7 +106,7 @@ class CustomShadowButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     required this.color,
-    required this.textStyle,
+    this.textStyle,
     this.icon,
   });
 
