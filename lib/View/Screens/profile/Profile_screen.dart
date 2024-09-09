@@ -2,6 +2,7 @@ import 'package:bms/utils/color_constant.dart';
 import 'package:bms/utils/font_constant.dart';
 import 'package:bms/utils/images_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -160,7 +161,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed('/booking');
+                    },
                     child: const BookingRow(
                       text: 'Booking',
                       image: Image(
@@ -176,7 +179,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 10,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed('/personal');
+                    },
                     child: const BookingRow(
                       text: 'Personal information',
                       image: Image(
@@ -192,7 +197,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 10,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed('/passenger');
+                    },
                     child: const BookingRow(
                       text: 'Passengers',
                       image: Image(
@@ -221,7 +228,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 20,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed('/wallet');
+                    },
                     child: const BookingRow(
                       text: 'Book My Sewa Wallet',
                       image: Image(
@@ -266,7 +275,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 20,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed('/offer');
+                    },
                     child: const BookingRow(
                       text: 'Offers',
                       image: Image(
@@ -282,7 +293,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 20,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed('/refer');
+                    },
                     child: const BookingRow(
                       text: 'Referrals',
                       image: Image(

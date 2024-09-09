@@ -1,20 +1,19 @@
 import 'package:bms/utils/color_constant.dart';
 import 'package:bms/utils/font_constant.dart';
 import 'package:flutter/material.dart';
-
 import '../../../utils/images_constant.dart';
 
 class BusCard extends StatelessWidget {
-  final String imagePath;
+  String? imagePath;
   final String money;
   final String subHeading;
   final String description;
   final int seatsLeft;
   final bool showFlashOffer;
 
-  const BusCard({
+    BusCard({
     super.key,
-    required this.imagePath,
+    this.imagePath,
     required this.money,
     required this.description,
     required this.seatsLeft,

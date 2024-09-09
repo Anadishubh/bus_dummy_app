@@ -1,4 +1,4 @@
-class Images{
+class Images {
   static const String bench = 'assets/images/bench.png';
   static const String blueTail = 'assets/images/b1.png';
   static const String d1 = 'assets/images/d1.png';
@@ -42,4 +42,13 @@ class Images{
   static const String arrow = 'assets/images/arrow.png';
   static const String light = 'assets/images/light.png';
   static const String ac = 'assets/images/ac.png';
+  static const String wallettt = 'assets/images/walletttt.png';
+  static const String walletphoto = 'assets/images/walletphoto.png';
+  static const String refer = 'assets/images/refer.png';
+  static const String wallet2 = 'assets/images/wallet2.png';
+  static const String greendown = 'assets/images/greendown.png';
+  static const String redup = 'assets/images/redup.png';
+  static const String call = 'assets/images/call.png';
+  static const String driver = 'assets/images/driver.png';
+  static const String qr = 'assets/images/qr.png';
 }

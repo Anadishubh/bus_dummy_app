@@ -750,7 +750,7 @@ class CustomDrawer2 extends StatelessWidget {
                   FontConstant.styleRegular(fontSize: 14, color: Colors.black),
             ),
             onTap: () {
-              Navigator.of(context).pop(); // Close the drawer
+
               // Navigate to Search Page
             },
           ),

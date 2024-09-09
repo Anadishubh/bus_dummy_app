@@ -13,7 +13,7 @@ class AppColors {
   static const Color greenLight = Color(0xffdefbd5);
   static const Color greenLight2 = Color(0xff31CD6F);
   static const Color greyLight = Color(0xffEFEFEF);
-  // static const Color backgroundColor = Color(0xffFFFFFF);
+  static const Color wallet = Color(0xff862427);
   // static const Color textField = Color(0xff8EA9FF);
   // static const Color error = Color(0xffe30c0c);
 }

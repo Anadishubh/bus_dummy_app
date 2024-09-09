@@ -173,22 +173,31 @@ class CustomButton extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: InkWell(
-        splashColor: Colors.grey.shade400,
-        borderRadius: BorderRadius.circular(10),
-        onTap: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                text,
-                style: textStyle,
-              ),
-            ],
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.person,
+            color: Colors.white,
           ),
-        ),
+          InkWell(
+            splashColor: Colors.grey.shade400,
+            borderRadius: BorderRadius.circular(10),
+            onTap: onPressed,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    text,
+                    style: textStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

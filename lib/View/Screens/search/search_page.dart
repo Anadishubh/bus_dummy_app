@@ -43,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.background,
-        drawer: CustomDrawer(),
+        drawer: const CustomDrawer(),
         body: Stack(
           children: [
             Column(
@@ -148,8 +148,7 @@ class _SearchPageState extends State<SearchPage> {
                     scrollDirection: Axis.vertical,
                     itemCount: 4,
                     itemBuilder: (context, index) {
-                      return const BusCard(
-                        imagePath: 'assets/images/grp2.png',
+                      return  BusCard(
                         money: '1599',
                         description: 'PRTC Tours and Travels',
                         seatsLeft: 20,
@@ -562,10 +561,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 style: FontConstant.styleRegular(
                     fontSize: 14, color: Colors.black),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('500'),
